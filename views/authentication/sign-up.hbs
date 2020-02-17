@@ -1,0 +1,10 @@
+<form action="" method="POST" class="form">
+  <label for="username">Username:</label>
+  <input type="text" id="username" placeholder="Your username" name="username">
+  <label for="password">Password:</label>
+  <input type="text" id="password" placeholder="Strong password" name="password">
+  {{#if errorMessage}}
+  <div class="error-message">{{ errorMessage }}</div>
+{{/if}}
+<button>Sign up</button>
+</form>
