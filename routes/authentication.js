@@ -69,14 +69,12 @@ router.post('/sign-up', (req, res, next) => {
     bcrypt
       .hash(password, 10)
       .then(passwordHash => {
-        console.log(passwordHash);
         return User.create({
           username,
           passwordHash
         });
       })
       .then(user => {
-        console.log(user);
         res.redirect('/');
       })
       .catch(() => {

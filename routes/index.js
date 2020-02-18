@@ -11,9 +11,40 @@ router.get('/', (req, res, next) => {
 
 router.get('/profile/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
-  User.findById(id).then(user => {
-    res.render('profile', { user });
-  });
+  User.findById(id)
+    .then(user => {
+      res.render('profile', { user });
+    })
+    .catch(() => {
+      next(new Error('Not found'));
+    });
+});
+
+router.get('/profile/:id/edit', routeGuard, (req, res, next) => {
+  const id = req.params.id;
+  User.findById(id)
+    .then(user => {
+      res.render('profileedit', { user });
+      console.log({ user }, user);
+    })
+    .catch(() => {
+      next(new Error('Not found'));
+    });
+});
+
+router.post('/profile/:id/edit', routeGuard, (req, res, next) => {
+  const id = req.params.id;
+  const { username } = req.body;
+  const data = {
+    username
+  };
+  User.findByIdAndUpdate(id, data)
+    .then(() => {
+      res.redirect(`/profile/${id}`);
+    })
+    .catch(() => {
+      next(new Error('Not found'));
+    });
 });
 
 router.get('/main', routeGuard, (req, res, next) => {

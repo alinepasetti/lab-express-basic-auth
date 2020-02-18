@@ -1,0 +1,16 @@
+{{#with user}}
+
+<form class="form" action="" method="POST">
+  <label for="username">Username:</label>
+  <input type="text" id="username" placeholder="Your username" name="username" value="{{username}}">
+  {{!-- <label for="password">Password:</label>
+  <input type="password" id="password" placeholder="Strong password" name="password"> --}}
+
+
+{{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+  
+<button>Edit</button>
+</form>
+{{/with}}
